@@ -57,6 +57,7 @@ function iNic_CF_CC_deactivation() {
   // Deactivation rules here
 }
 
+
 /**
  * Init hook
  */
