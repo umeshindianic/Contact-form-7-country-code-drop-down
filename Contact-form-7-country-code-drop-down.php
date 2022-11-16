@@ -9,48 +9,64 @@
 * License: GPL2
 */
 
+if (!defined('ABSPATH')) {
+		exit;
+}
+
 define('INIC_CF_CC_URL', plugin_dir_url(__FILE__));
 define('INIC_CF_CC_PUBLIC_URL', INIC_CF_CC_URL . 'public/');
+
+define('ITI4CF7_VERSION', '1.5.7');
+  define('ITI4CF7_BASENAME', plugin_basename(__FILE__));
+  define('ITI4CF7_DIR', plugin_dir_path(__FILE__));
+  define('ITI4CF7_URL', plugin_dir_url(__FILE__));
+  define('ITI4CF7_ASSETS_DIR', ITI4CF7_DIR . 'assets/');
+  define('ITI4CF7_INCLUDES_DIR', ITI4CF7_DIR . 'includes/');
+  define('ITI4CF7_VENDOR_DIR', ITI4CF7_DIR . 'vendor/');
+  define('ITI4CF7_ASSETS_URL', ITI4CF7_URL . 'assets/');
+  define('ITI4CF7_INCLUDES_URL', ITI4CF7_URL . 'includes/');
+  define('ITI4CF7_VENDOR_URL', ITI4CF7_URL . 'vendor/');
+  define('ITI4CF7_PUBLIC_URL', ITI4CF7_URL . 'public/');
 
 register_activation_hook( __FILE__, 'iNic_CF_CC_activation' );
 
 /**
- * Activation hook
+ * Activation hook for version 1.0.0
  */
 
 function iNic_CF_CC_activation() {
 	global $wp_version;
 
-	$php = '5.6';
-	$wp  = '5.0';
+	$php_version = '5.6';
+	$wordpress_version  = '5.0';
 
-	if ( version_compare( PHP_VERSION, $php, '<' ) ) {
+	if ( version_compare( PHP_VERSION, $php_version, '<' ) ) {
 		deactivate_plugins( basename( __FILE__ ) );
 		wp_die(
 			'<p>' .
 			sprintf(
-				__( 'This plugin can not be activated because it requires a PHP version greater than %1$s. Your PHP version can be updated by your hosting company.', 'my_plugin' ),
-				$php
+				__( 'Required version for PHP is %1$s. Please update your PHP version to activate this plugin.', 'iNic_CF_CC_plugin' ),
+				$php_version
 			)
-			. '</p> <a href="' . admin_url( 'plugins.php' ) . '">' . __( 'go back', 'my_plugin' ) . '</a>'
+			. '</p> <a href="' . admin_url( 'plugins.php' ) . '">' . __( 'go back', 'iNic_CF_CC_plugin' ) . '</a>'
 		);
 	}
 
-	if ( version_compare( $wp_version, $wp, '<' ) ) {
+	if ( version_compare( $wp_version, $wordpress_version, '<' ) ) {
 		deactivate_plugins( basename( __FILE__ ) );
 		wp_die(
 			'<p>' .
 			sprintf(
-				__( 'This plugin can not be activated because it requires a WordPress version greater than %1$s. Please go to Dashboard &#9656; Updates to gran the latest version of WordPress .', 'my_plugin' ),
-				$wp
+				__( 'Required version for WordPress is %1$s. Please update your WordPress version to activate this plugin.', 'iNic_CF_CC_plugin' ),
+				$wordpress_version
 			)
-			. '</p> <a href="' . admin_url( 'plugins.php' ) . '">' . __( 'go back', 'my_plugin' ) . '</a>'
+			. '</p> <a href="' . admin_url( 'plugins.php' ) . '">' . __( 'go back', 'iNic_CF_CC_plugin' ) . '</a>'
 		);
 	}
 }
 
 /**
- * Deactivation hook
+ * Deactivation hook for version 1.0.0
  */
 register_deactivation_hook( __FILE__, 'iNic_CF_CC_deactivation' );
 function iNic_CF_CC_deactivation() {
@@ -59,9 +75,11 @@ function iNic_CF_CC_deactivation() {
 
 
 /**
- * Init hook
+ * Init hook for version 1.0.0
  */
 add_action( 'init', 'iNic_CF_CC_init' );
 function iNic_CF_CC_init() {
-	include_once plugin_dir_path( __FILE__ ).'admin/admin_cf_cc.php';
+	include_once plugin_dir_path( __FILE__ ).'admin/admin_init.php';
+	include_once plugin_dir_path( __FILE__ ).'public/iNic-CF7-CC-form-tag.php';
+	include_once plugin_dir_path( __FILE__ ).'admin/iNic-CF7-CC-mail.php';
 }
