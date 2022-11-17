@@ -130,7 +130,9 @@ function iNic_CF_CC_country_code_validation_filter( $result, $iNic_CF_CC_tag ) {
 
 	$name = $iNic_CF_CC_tag->name;
 
-	$value = isset( $_POST[$name] )? trim( wp_unslash( strtr( (string) $_POST[$name], "\n", " " ) ) ) : '';
+	$_name = sanitize_text_field($_POST[$name]);
+
+	$value = isset( $_name )? trim( wp_unslash( strtr( (string) $_name, "\n", " " ) ) ) : '';
 		
 	if ( $iNic_CF_CC_tag->is_required() && '' == $value ) {
 	    $result->invalidate( $iNic_CF_CC_tag, wpcf7_get_message( 'invalid_required' ) );

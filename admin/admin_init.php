@@ -15,7 +15,7 @@ function iNic_CF_CC_tag_generator_country_code($iNic_CF7_CC, $iNic_CF7_CC_args =
 	$iNic_CF7_CC_args = wp_parse_args($iNic_CF7_CC_args, array());
 	$type = $iNic_CF7_CC_args['id'];
 
-	$description = __('Create dropdown field for country code number with flag dropdown.', 'country-code-input-for-contact-form-7');
+	$description = __('Create drop-down field for country code number with flag drop-down.', 'country-code-input-for-contact-form-7');
 
 ?>
 	<div class="control-box iNic-CF-CC-control-box">
@@ -61,7 +61,7 @@ function iNic_CF_CC_tag_generator_country_code($iNic_CF7_CC, $iNic_CF7_CC_args =
 						<th scope="row"><label for="<?php echo esc_attr($iNic_CF7_CC_args['content'] . '-preferredCountries'); ?>"><?php echo esc_html(__('Preferred Countries', 'country-code-input-for-contact-form-7')); ?></label></th>
 						<td>
 							<input type="text" name="preferredCountries" class="preferredCountriesvalue oneline option" id="<?php echo esc_attr($iNic_CF7_CC_args['content'] . '-preferredCountries'); ?>" placeholder="<?php /* translators: 1. Two-letter country codes placeholder */ _e('in', 'country-code-input-for-contact-form-7'); ?>" />
-							<p class="description"><?php _e('Add a two-letters country code separated by pipe sign(|). The countries entered here will be moved at the top of the country dropdown list.', 'country-code-input-for-contact-form-7') ?></p>
+							<p class="description"><?php _e('Add a two-letters country code separated by pipe sign(|). The countries entered here will be moved at the top of the country drop-down list.', 'country-code-input-for-contact-form-7') ?></p>
 						</td>
 					</tr>
 
@@ -69,7 +69,7 @@ function iNic_CF_CC_tag_generator_country_code($iNic_CF7_CC, $iNic_CF7_CC_args =
 						<th scope="row"><label for="<?php echo esc_attr($iNic_CF7_CC_args['content'] . '-lookup-key'); ?>"><?php echo esc_html(__('IP Lookup API key', 'country-code-input-for-contact-form-7')); ?></label></th>
 						<td>
 							<input type="text" name="lookup-key" class="idvalue oneline option" id="<?php echo esc_attr($iNic_CF7_CC_args['content'] . '-lookup-key'); ?>" />
-							<p class="description"><?php _e('Please get your API Key at https://extreme-ip-lookup.com', 'country-code-input-for-contact-form-7'); ?></p>
+							<p class="description"><?php _e('Please get your API Key at https://extreme-ip-lookup.com. If you not insert API key then it will not auto detect country code.', 'country-code-input-for-contact-form-7'); ?></p>
 						</td>
 					</tr>
 
